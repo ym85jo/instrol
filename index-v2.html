@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSTROL - Data Center & Cloud Infrastructure Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent-blue: #2563eb;
+            --accent-blue-hover: #1d4ed8;
+            --accent-cyan: #0284c7;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            word-break: keep-all;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-menu a {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Language Toggle Button */
+        .lang-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            background: #f8fafc;
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .lang-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding-top: 180px;
+            padding-bottom: 110px;
+            background: linear-gradient(180deg, #eff6ff 0%, var(--bg-light) 100%);
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 30px;
+            background: #dbeafe;
+            color: var(--accent-blue);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            color: var(--text-main);
+        }
+
+        .hero h1 span {
+            color: var(--accent-blue);
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: var(--text-muted);
+            max-width: 760px;
+            margin: 0 auto 40px auto;
+            font-weight: 400;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 840px;
+            margin: 50px auto 0 auto;
+            padding: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-item h3 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin-bottom: 4px;
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Section Commons */
+        section {
+            padding: 90px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .section-header p {
+            font-size: 17px;
+            color: var(--text-muted);
+        }
+
+        /* Business Area Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 36px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: #bfdbfe;
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: #eff6ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--accent-blue);
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .service-card p {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-section {
+            background: #ffffff;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .about-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .values-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .value-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .value-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .value-info h4 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .value-info p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .about-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* History Section */
+        .history-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 30px;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            box-shadow: 0 0 0 4px #dbeafe;
+        }
+
+        .timeline-date {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 6px;
+        }
+
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            padding: 60px 0 30px 0;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-info h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .footer-info p {
+            max-width: 400px;
+            line-height: 1.6;
+        }
+
+        .footer-meta p {
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hero h1 { font-size: 34px; }
+            .hero p { font-size: 16px; }
+            .hero-stats { grid-template-columns: 1fr; }
+            .about-wrapper { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                    <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                    <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                </svg>
+                INSTROL
+            </a>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="#about" class="lang-text" data-ko="회사소개" data-en="About Us">회사소개</a></li>
+                    <li><a href="#services" class="lang-text" data-ko="주요 사업영역" data-en="Business Areas">주요 사업영역</a></li>
+                    <li><a href="#values" class="lang-text" data-ko="핵심가치" data-en="Core Values">핵심가치</a></li>
+                    <li><a href="#history" class="lang-text" data-ko="연혁" data-en="History">연혁</a></li>
+                </ul>
+                <button class="lang-btn" id="langToggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                    <span id="langLabel">English</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <span class="badge">Next-Gen Data Center Infrastructure</span>
+            <h1>
+                <span class="lang-text" data-ko="데이터센터와 클라우드 시대를 이끄는" data-en="Leading the Era of Data Centers & Cloud">데이터센터와 클라우드 시대를 이끄는</span><br>
+                <span class="lang-text" data-ko="인프라 전문 기업, INSTROL" data-en="Infrastructure Partner, INSTROL">인프라 전문 기업, INSTROL</span>
+            </h1>
+            <p class="lang-text" 
+               data-ko="고성능 서버 공급부터 유지보수, 엣지 컴퓨팅 기술 설계까지. 차세대 IT 환경 구축을 위한 최상의 통합 솔루션을 제공합니다." 
+               data-en="From high-performance server delivery to maintenance and edge computing design. We provide integrated solutions for next-generation IT environments.">
+               고성능 서버 공급부터 유지보수, 엣지 컴퓨팅 기술 설계까지. 차세대 IT 환경 구축을 위한 최상의 통합 솔루션을 제공합니다.
+            </p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <h3>99.99%</h3>
+                    <p class="lang-text" data-ko="안정적인 인프라 운용 지원" data-en="Stable Infrastructure Operation">안정적인 인프라 운용 지원</p>
+                </div>
+                <div class="stat-item">
+                    <h3>End-to-End</h3>
+                    <p class="lang-text" data-ko="통합 인프라 맞춤 설계" data-en="Integrated Infrastructure Design">통합 인프라 맞춤 설계</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p class="lang-text" data-ko="전문 유지보수 컨설팅" data-en="Expert Maintenance & Consulting">전문 유지보수 컨설팅</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Areas Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="lang-text" data-ko="주요 사업영역" data-en="Key Business Areas">주요 사업영역</h2>
+                <p class="lang-text" data-ko="INSTROL의 전문 기술력으로 기업의 성공적인 디지털 전환을 지원합니다." data-en="Empowering your digital transformation with INSTROL's advanced engineering expertise.">INSTROL의 전문 기술력으로 기업의 성공적인 디지털 전환을 지원합니다.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                    </div>
+                    <h3 class="lang-text" data-ko="데이터센터 서버 & 컴퓨팅 장비 공급" data-en="Server & Computing Hardware Supply">데이터센터 서버 & 컴퓨팅 장비 공급</h3>
+                    <p class="lang-text" 
+                       data-ko="초고성능 계산 및 대용량 데이터 처리에 최적화된 최신 서버, 스토리지 및 고성능 컴퓨팅(HPC) 장비를 안정적으로 공급합니다." 
+                       data-en="Supplying high-performance servers, storage, and HPC systems optimized for ultra-fast computing and massive data processing.">
+                       초고성능 계산 및 대용량 데이터 처리에 최적화된 최신 서버, 스토리지 및 고성능 컴퓨팅(HPC) 장비를 안정적으로 공급합니다.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    </div>
+                    <h3 class="lang-text" data-ko="데이터센터 장비 유지보수 서비스" data-en="Data Center Maintenance Services">데이터센터 장비 유지보수 서비스</h3>
+                    <p class="lang-text" 
+                       data-ko="전문 엔지니어링 인력을 통해 데이터센터 장비의 장애 예방, 정기 점검, 신속한 24/7 기술 지원 및 유지보수 통합 서비스를 제공합니다." 
+                       data-en="Providing 24/7 technical support, preventative maintenance, and rapid troubleshooting through certified engineering experts.">
+                       전문 엔지니어링 인력을 통해 데이터센터 장비의 장애 예방, 정기 점검, 신속한 24/7 기술 지원 및 유지보수 통합 서비스를 제공합니다.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </div>
+                    <h3 class="lang-text" data-ko="데이터센터 개발 및 투자" data-en="Data Center Development & Investment">데이터센터 개발 및 투자</h3>
+                    <p class="lang-text" 
+                       data-ko="변화하는 글로벌 데이터 시장에 발맞추어 하이퍼스케일 및 차세대 데이터센터 개발, 전략적 투자를 통한 자산 가치 극대화를 추진합니다." 
+                       data-en="Driving hyperscale and next-gen data center development along with strategic investments to maximize digital asset value.">
+                       변화하는 글로벌 데이터 시장에 발맞추어 하이퍼스케일 및 차세대 데이터센터 개발, 전략적 투자를 통한 자산 가치 극대화를 추진합니다.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
+                    <h3 class="lang-text" data-ko="네트워크 솔루션 컨설팅 및 설계" data-en="Network Solutions Consulting & Design">네트워크 솔루션 컨설팅 및 설계</h3>
+                    <p class="lang-text" 
+                       data-ko="고대역폭, 초저지연 네트워크 트래픽 환경에 최적화된 토폴로지 설계와 안정적인 대규모 네트워크 아키텍처 컨설팅을 제공합니다." 
+                       data-en="Offering network topology design and consulting optimized for high bandwidth and ultra-low latency traffic environments.">
+                       고대역폭, 초저지연 네트워크 트래픽 환경에 최적화된 토폴로지 설계와 안정적인 대규모 네트워크 아키텍처 컨설팅을 제공합니다.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+                    </div>
+                    <h3 class="lang-text" data-ko="엣지 컴퓨팅(Edge Computing) 기술설계" data-en="Edge Computing Architecture & Design">엣지 컴퓨팅(Edge Computing) 기술설계</h3>
+                    <p class="lang-text" 
+                       data-ko="현장 실시간 데이터 처리를 위한 분산형 엣지 노드 구축 및 최첨단 IoT·AI 인프라 연계 기술을 맞춤형으로 구현합니다." 
+                       data-en="Implementing distributed edge nodes and custom IoT/AI infrastructure integration for real-time edge data processing.">
+                       현장 실시간 데이터 처리를 위한 분산형 엣지 노드 구축 및 최첨단 IoT·AI 인프라 연계 기술을 맞춤형으로 구현합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-text">
+                    <h2 class="lang-text" data-ko="회사의 정체성과 비전" data-en="Identity & Vision">회사의 정체성과 비전</h2>
+                    <p class="lang-text" 
+                       data-ko="INSTROL은 급변하는 IT 환경 속에서 데이터센터 및 클라우드 인프라 솔루션 분야의 혁신을 이끌어가는 기술 중심 기업입니다. 최신 컴퓨팅 기술과 고도화된 엔지니어링 경험을 바탕으로 고객사의 비즈니스 성장을 든든히 뒷받침합니다." 
+                       data-en="INSTROL is a technology-driven leader in data center and cloud infrastructure solutions, delivering state-of-the-art computing environments to accelerate customer growth.">
+                       INSTROL은 급변하는 IT 환경 속에서 데이터센터 및 클라우드 인프라 솔루션 분야의 혁신을 이끌어가는 기술 중심 기업입니다. 최신 컴퓨팅 기술과 고도화된 엔지니어링 경험을 바탕으로 고객사의 비즈니스 성장을 든든히 뒷받침합니다.
+                    </p>
+                    
+                    <div id="values" class="values-list">
+                        <div class="value-item">
+                            <div class="value-number">1</div>
+                            <div class="value-info">
+                                <h4 class="lang-text" data-ko="기술 신뢰성 (Reliability)" data-en="Reliability">기술 신뢰성 (Reliability)</h4>
+                                <p class="lang-text" data-ko="최상의 품질 검증을 거친 고성능 장비와 무결점 유지보수를 지향합니다." data-en="We deliver quality-tested hardware and flawless maintenance operations.">최상의 품질 검증을 거친 고성능 장비와 무결점 유지보수를 지향합니다.</p>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-number">2</div>
+                            <div class="value-info">
+                                <h4 class="lang-text" data-ko="미래 지향적 혁신 (Innovation)" data-en="Innovation">미래 지향적 혁신 (Innovation)</h4>
+                                <p class="lang-text" data-ko="엣지 컴퓨팅과 차세대 데이터센터 개발을 아우르는 기술 선도 기업으로 나아갑니다." data-en="Leading future technology in edge computing and next-generation data center development.">엣지 컴퓨팅과 차세대 데이터센터 개발을 아우르는 기술 선도 기업으로 나아갑니다.</p>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-number">3</div>
+                            <div class="value-info">
+                                <h4 class="lang-text" data-ko="고객 중심 맞춤 솔루션 (Customer Centric)" data-en="Customer Centric">고객 중심 맞춤 솔루션 (Customer Centric)</h4>
+                                <p class="lang-text" data-ko="기업별 요구사항에 가장 최적화된 맞춤형 아키텍처 및 유지보수 플랜을 제공합니다." data-en="Providing custom architectures and maintenance strategies tailored to business needs.">기업별 요구사항에 가장 최적화된 맞춤형 아키텍처 및 유지보수 플랜을 제공합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-box">
+                    <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 16px; color: var(--text-main);" class="lang-text" data-ko="INSTROL 핵심 가치" data-en="INSTROL Core Values">INSTROL 핵심 가치</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 24px; font-size: 15px;" class="lang-text" 
+                       data-ko="우리는 기술의 안정성과 미래 가치를 최우선으로 생각합니다. 단순한 장비 공급을 넘어 기업의 디지털 인프라 생태계를 종합적으로 구축하는 든든한 파트너가 되는 것이 INSTROL의 비전입니다." 
+                       data-en="We prioritize technological stability and future value. INSTROL aims to be a trusted partner building robust digital infrastructure ecosystems.">
+                       우리는 기술의 안정성과 미래 가치를 최우선으로 생각합니다. 단순한 장비 공급을 넘어 기업의 디지털 인프라 생태계를 종합적으로 구축하는 든든한 파트너가 되는 것이 INSTROL의 비전입니다.
+                    </p>
+                    <div style="padding: 20px; background: #eff6ff; border-radius: 12px; border-left: 4px solid var(--accent-blue);">
+                        <p style="font-size: 14px; color: var(--accent-blue); font-weight: 700; margin: 0;">
+                            "Next-Gen Infrastructure Partner for Cloud & Data Center"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="lang-text" data-ko="INSTROL 연혁" data-en="Our History">INSTROL 연혁</h2>
+                <p class="lang-text" data-ko="지속적인 성장을 거듭해온 인스트롤의 주요 발자취입니다." data-en="Milestones of continuous growth and engineering leadership.">지속적인 성장을 거듭해온 인스트롤의 주요 발자취입니다.</p>
+            </div>
+            
+            <div class="history-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2025 - Present</div>
+                    <div class="timeline-title lang-text" data-ko="데이터센터 & 엣지 컴퓨팅 솔루션 영역 확장" data-en="Expanded Data Center & Edge Computing Solutions">데이터센터 & 엣지 컴퓨팅 솔루션 영역 확장</div>
+                    <div class="timeline-desc lang-text" data-ko="차세대 데이터센터 인프라 도소매 및 유지보수, 엣지 컴퓨팅 컨설팅 기술 체계 확립" data-en="Established wholesale, maintenance, and edge computing consulting frameworks for next-gen data centers.">차세대 데이터센터 인프라 도소매 및 유지보수, 엣지 컴퓨팅 컨설팅 기술 체계 확립</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.04</div>
+                    <div class="timeline-title lang-text" data-ko="(주)인스트롤 법인 설립" data-en="Incorporation of INSTROL Co., Ltd.">(주)인스트롤 법인 설립</div>
+                    <div class="timeline-desc lang-text" data-ko="컴퓨터 및 주변장치, 서버 인프라 솔루션 기업으로 공식 출범" data-en="Officially launched as an enterprise server infrastructure & hardware solution provider.">컴퓨터 및 주변장치, 서버 인프라 솔루션 기업으로 공식 출범</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>INSTROL</h3>
+                    <p class="lang-text" 
+                       data-ko="데이터센터와 클라우드 시대의 인프라 전문 기업<br>주식회사 인스트롤 (INSTROL Co., Ltd.)" 
+                       data-en="Enterprise Infrastructure Partner for Cloud & Data Center<br>INSTROL Co., Ltd.">
+                       데이터센터와 클라우드 시대의 인프라 전문 기업<br>주식회사 인스트롤 (INSTROL Co., Ltd.)
+                    </p>
+                </div>
+                <div class="footer-meta">
+                    <p><strong class="lang-text" data-ko="대표자:" data-en="CEO:">대표자:</strong> <span class="lang-text" data-ko="고준영" data-en="Junyoung Ko">고준영</span></p>
+                    <p><strong class="lang-text" data-ko="주요 사업:" data-en="Business:">주요 사업:</strong> <span class="lang-text" data-ko="데이터센터 장비 공급, 유지보수, 엣지 컴퓨팅, 네트워크 컨설팅" data-en="Data Center Hardware, Maintenance, Edge Computing, Network Consulting">데이터센터 장비 공급, 유지보수, 엣지 컴퓨팅, 네트워크 컨설팅</span></p>
+                    <p><strong class="lang-text" data-ko="주소:" data-en="Address:">주소:</strong> <span class="lang-text" data-ko="서울특별시 강남구 도산대로 145, 11층 (신사동, 인우빌딩)" data-en="11F, Inwoo Bldg, 145 Dosan-daero, Gangnam-gu, Seoul, Korea">서울특별시 강남구 도산대로 145, 11층 (신사동, 인우빌딩)</span></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 INSTROL Co., Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script for Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const langToggleBtn = document.getElementById('langToggle');
+            const langLabel = document.getElementById('langLabel');
+            const langTexts = document.querySelectorAll('.lang-text');
+            
+            let currentLang = 'ko';
+
+            langToggleBtn.addEventListener('click', function() {
+                if (currentLang === 'ko') {
+                    currentLang = 'en';
+                    langLabel.textContent = '한국어';
+                    langTexts.forEach(el => {
+                        const enText = el.getAttribute('data-en');
+                        if (enText) {
+                            el.innerHTML = enText;
+                        }
+                    });
+                } else {
+                    currentLang = 'ko';
+                    langLabel.textContent = 'English';
+                    langTexts.forEach(el => {
+                        const koText = el.getAttribute('data-ko');
+                        if (koText) {
+                            el.innerHTML = koText;
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
