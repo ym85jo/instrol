@@ -89,13 +89,15 @@
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--accent);
             display: flex;
             align-items: center;
-            gap: 10px;
+            line-height: 0;
+        }
+
+        .logo img {
+            height: 44px;
+            width: auto;
+            display: block;
         }
 
         .nav-right {
@@ -558,6 +560,7 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-menu { display: none; }
+            .logo img { height: 36px; }
             .hero h1 { font-size: 34px; }
             .hero p { font-size: 16px; }
             .hero-stats { grid-template-columns: 1fr; }
@@ -581,14 +584,8 @@
     <!-- Navigation Header -->
     <header>
         <div class="container nav-wrapper">
-            <a href="#" class="logo">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                    <line x1="6" y1="6" x2="6.01" y2="6"></line>
-                    <line x1="6" y1="18" x2="6.01" y2="18"></line>
-                </svg>
-                INSTROL
+            <a href="#" class="logo" aria-label="INSTROL">
+                <img src="logo.png" alt="INSTROL - Connecting Tomorrow with Technology" width="865" height="272">
             </a>
             <div class="nav-right">
                 <ul class="nav-menu">
