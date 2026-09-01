@@ -1,0 +1,20 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 push될 때 자동 실행
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH로 EC2 접속 후 git pull 실행
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}        # EC2 퍼블릭 IP
+          username: ec2-user                   # Amazon Linux 기본 계정
+          key: ${{ secrets.EC2_SSH_KEY }}     # EC2 생성 시 다운로드받은 .pem 키 내용
+          script: |
+            cd /var/www/instrol
+            git pull origin main
