@@ -527,6 +527,143 @@
             color: var(--text-muted);
         }
 
+        /* Works / Project Cases Section */
+        .works-section {
+            border-top: 1px solid var(--border-color);
+        }
+
+        .works-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .work-item {
+            width: 100%;
+            max-width: 720px;
+            text-align: center;
+        }
+
+        .work-item h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 14px;
+        }
+
+        .work-item h3 .work-num {
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        .work-photos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .work-photos figure {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 4 / 3;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            cursor: zoom-in;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .work-photos figure:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .work-photos img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            border-radius: 6px;
+            pointer-events: none;
+        }
+
+        /* Photo lightbox modal */
+        .photo-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(0, 0, 0, 0.82);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+
+        .photo-modal.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .photo-modal__dialog {
+            position: relative;
+            max-width: min(1100px, 96vw);
+            max-height: 92vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-modal__img {
+            max-width: 100%;
+            max-height: 92vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            background: #111;
+        }
+
+        .photo-modal__close {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            width: 40px;
+            height: 40px;
+            border: 0;
+            border-radius: 50%;
+            background: #ffffff;
+            color: #111111;
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-modal__close:hover {
+            background: #f0f0f0;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
         /* Location / Map Section */
         .location-section {
             border-top: 1px solid var(--border-color);
@@ -741,6 +878,27 @@
             .services-grid { grid-template-columns: 1fr; }
             .location-layout { grid-template-columns: 1fr; }
             .clients-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+            .work-photos {
+                grid-template-columns: 1fr;
+            }
+
+            .work-item {
+                max-width: 420px;
+            }
+
+            .work-photos figure {
+                aspect-ratio: 4 / 3;
+                max-height: 280px;
+            }
+
+            .photo-modal {
+                padding: 16px;
+            }
+
+            .photo-modal__close {
+                top: 8px;
+                right: 8px;
+            }
             .map-frame { min-height: 280px; }
             body { background-attachment: scroll; }
             .hero::after { opacity: 0.45; }
@@ -769,7 +927,8 @@
                     <li><a href="#services" class="lang-text" data-ko="주요 사업영역" data-en="Business Areas">주요 사업영역</a></li>
                     <li><a href="#partners" class="lang-text" data-ko="파트너스" data-en="Partners">파트너스</a></li>
                     <li><a href="#values" class="lang-text" data-ko="핵심가치" data-en="Core Values">핵심가치</a></li>
-                    <li><a href="#history" class="lang-text" data-ko="연혁" data-en="History">연혁</a></li>
+                    <li><a href="#history" class="lang-text" data-ko="히스토리" data-en="History">히스토리</a></li>
+                    <li><a href="#works" class="lang-text" data-ko="실적" data-en="Projects">실적</a></li>
                     <li><a href="#location" class="lang-text" data-ko="오시는 길" data-en="Location">오시는 길</a></li>
                 </ul>
                 <button class="lang-btn" id="langToggle">
@@ -971,21 +1130,113 @@
     <section id="history">
         <div class="container">
             <div class="section-header">
-                <h2 class="lang-text" data-ko="INSTROL 연혁" data-en="Our History">INSTROL 연혁</h2>
+                <h2 class="lang-text" data-ko="INSTROL 히스토리" data-en="Our History">INSTROL 히스토리</h2>
                 <p class="lang-text" data-ko="지속적인 성장을 거듭해온 인스트롤의 주요 발자취입니다." data-en="Milestones of continuous growth and engineering leadership.">지속적인 성장을 거듭해온 인스트롤의 주요 발자취입니다.</p>
             </div>
             
             <div class="history-timeline">
                 <div class="timeline-item">
-                    <div class="timeline-date">2025 - Present</div>
-                    <div class="timeline-title lang-text" data-ko="데이터센터 & 엣지 컴퓨팅 솔루션 영역 확장" data-en="Expanded Data Center & Edge Computing Solutions">데이터센터 & 엣지 컴퓨팅 솔루션 영역 확장</div>
-                    <div class="timeline-desc lang-text" data-ko="차세대 데이터센터 인프라 도소매 및 유지보수, 엣지 컴퓨팅 컨설팅 기술 체계 확립" data-en="Established wholesale, maintenance, and edge computing consulting frameworks for next-gen data centers.">차세대 데이터센터 인프라 도소매 및 유지보수, 엣지 컴퓨팅 컨설팅 기술 체계 확립</div>
+                    <div class="timeline-date">2026.07</div>
+                    <div class="timeline-title lang-text" data-ko="마곡 GNC에너지 DC 2차 RDC(Rear Door Cooling) 설치 공사" data-en="Magok GNC Energy DC Phase 2 RDC (Rear Door Cooling) Installation">마곡 GNC에너지 DC 2차 RDC(Rear Door Cooling) 설치 공사</div>
+                    <div class="timeline-desc lang-text" data-ko="서버 랙 고효율 냉각 냉수 루프 연동 냉각 장치" data-en="High-efficiency server rack cooling system integrated with a chilled-water loop">서버 랙 고효율 냉각 냉수 루프 연동 냉각 장치</div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-date">2025.04</div>
-                    <div class="timeline-title lang-text" data-ko="(주)인스트롤 법인 설립" data-en="Incorporation of INSTROL Co., Ltd.">(주)인스트롤 법인 설립</div>
-                    <div class="timeline-desc lang-text" data-ko="컴퓨터 및 주변장치, 서버 인프라 솔루션 기업으로 공식 출범" data-en="Officially launched as an enterprise server infrastructure & hardware solution provider.">컴퓨터 및 주변장치, 서버 인프라 솔루션 기업으로 공식 출범</div>
+                    <div class="timeline-date">2026.03</div>
+                    <div class="timeline-title lang-text" data-ko="청담 EDGE DC 전력 분배 장치(PDU) 납품" data-en="Cheongdam EDGE DC PDU Delivery">청담 EDGE DC 전력 분배 장치(PDU) 납품</div>
+                    <div class="timeline-desc lang-text" data-ko="망고부스트 (안정적 랙 전원 공급 장치)" data-en="MangoBoost (stable rack power distribution unit)">망고부스트 (안정적 랙 전원 공급 장치)</div>
                 </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026.02</div>
+                    <div class="timeline-title lang-text" data-ko="마곡 GNC에너지 DC 1차 RDC(Rear Door Cooling) 설치 공사" data-en="Magok GNC Energy DC Phase 1 RDC (Rear Door Cooling) Installation">마곡 GNC에너지 DC 1차 RDC(Rear Door Cooling) 설치 공사</div>
+                    <div class="timeline-desc lang-text" data-ko="서버 랙 고효율 냉각 냉수 루프 연동 냉각 장치" data-en="High-efficiency server rack cooling system integrated with a chilled-water loop">서버 랙 고효율 냉각 냉수 루프 연동 냉각 장치</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.11</div>
+                    <div class="timeline-title lang-text" data-ko="청담 EDGE DC 무정전 전원 공급 장치(UPS) 납품 공사" data-en="Cheongdam EDGE DC UPS Supply & Installation">청담 EDGE DC 무정전 전원 공급 장치(UPS) 납품 공사</div>
+                    <div class="timeline-desc lang-text" data-ko="정전 및 비상 상황 전원 백업 솔루션 준공 완료" data-en="Completed power backup solution for outages and emergency scenarios">정전 및 비상 상황 전원 백업 솔루션 준공 완료</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.10</div>
+                    <div class="timeline-title lang-text" data-ko="청담 EDGE DC 전력 분배 장치(PDU) 납품" data-en="Cheongdam EDGE DC PDU Delivery">청담 EDGE DC 전력 분배 장치(PDU) 납품</div>
+                    <div class="timeline-desc lang-text" data-ko="퓨리오사AI (안정적 랙 전원 공급 장치)" data-en="FuriosaAI (stable rack power distribution unit)">퓨리오사AI (안정적 랙 전원 공급 장치)</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.09</div>
+                    <div class="timeline-title lang-text" data-ko="청담 EDGE DC 컨테인먼트(Containment) 설계 및 설치" data-en="Cheongdam EDGE DC Containment Design & Installation">청담 EDGE DC 컨테인먼트(Containment) 설계 및 설치</div>
+                    <div class="timeline-desc lang-text" data-ko="퓨리오사AI (서버 랙 냉각 유지 장치)" data-en="FuriosaAI (server rack cooling containment system)">퓨리오사AI (서버 랙 냉각 유지 장치)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Works / Project Cases Section -->
+    <section id="works" class="works-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="lang-text" data-ko="실적(공사 사례)" data-en="Projects (Case Studies)">실적(공사 사례)</h2>
+                <p class="lang-text" data-ko="데이터센터 인프라 구축 및 설치 공사 현장 사례입니다." data-en="Field cases from data center infrastructure construction and installation projects.">데이터센터 인프라 구축 및 설치 공사 현장 사례입니다.</p>
+            </div>
+
+            <div class="works-list">
+                <article class="work-item">
+                    <h3>
+                        <span class="work-num">01</span>
+                        <span class="lang-text" data-ko="컨테인먼트(Containment) 설치 공사" data-en="Containment Installation">컨테인먼트(Containment) 설치 공사</span>
+                    </h3>
+                    <div class="work-photos">
+                        <figure class="work-photo" data-full="photos/1_1.jpg" role="button" tabindex="0" aria-label="컨테인먼트(Containment) 설치 공사 1 확대 보기">
+                            <img src="photos/1_1.jpg" alt="컨테인먼트(Containment) 설치 공사 1" loading="lazy">
+                        </figure>
+                        <figure class="work-photo" data-full="photos/1_2.jpg" role="button" tabindex="0" aria-label="컨테인먼트(Containment) 설치 공사 2 확대 보기">
+                            <img src="photos/1_2.jpg" alt="컨테인먼트(Containment) 설치 공사 2" loading="lazy">
+                        </figure>
+                    </div>
+                </article>
+
+                <article class="work-item">
+                    <h3>
+                        <span class="work-num">02</span>
+                        <span class="lang-text" data-ko="전력 분배 장치(PDU) 납품" data-en="PDU Delivery">전력 분배 장치(PDU) 납품</span>
+                    </h3>
+                    <div class="work-photos">
+                        <figure class="work-photo" data-full="photos/2_1.jpg" role="button" tabindex="0" aria-label="전력 분배 장치(PDU) 납품 1 확대 보기">
+                            <img src="photos/2_1.jpg" alt="전력 분배 장치(PDU) 납품 1" loading="lazy">
+                        </figure>
+                        <figure class="work-photo" data-full="photos/2_2.jpg" role="button" tabindex="0" aria-label="전력 분배 장치(PDU) 납품 2 확대 보기">
+                            <img src="photos/2_2.jpg" alt="전력 분배 장치(PDU) 납품 2" loading="lazy">
+                        </figure>
+                    </div>
+                </article>
+
+                <article class="work-item">
+                    <h3>
+                        <span class="work-num">03</span>
+                        <span class="lang-text" data-ko="무정전 전원 공급 장치(UPS) 설치 공사" data-en="UPS Installation">무정전 전원 공급 장치(UPS) 설치 공사</span>
+                    </h3>
+                    <div class="work-photos">
+                        <figure class="work-photo" data-full="photos/3_1.jpg" role="button" tabindex="0" aria-label="무정전 전원 공급 장치(UPS) 설치 공사 1 확대 보기">
+                            <img src="photos/3_1.jpg" alt="무정전 전원 공급 장치(UPS) 설치 공사 1" loading="lazy">
+                        </figure>
+                        <figure class="work-photo" data-full="photos/3_2.jpg" role="button" tabindex="0" aria-label="무정전 전원 공급 장치(UPS) 설치 공사 2 확대 보기">
+                            <img src="photos/3_2.jpg" alt="무정전 전원 공급 장치(UPS) 설치 공사 2" loading="lazy">
+                        </figure>
+                    </div>
+                </article>
+
+                <article class="work-item">
+                    <h3>
+                        <span class="work-num">04</span>
+                        <span class="lang-text" data-ko="리어 도어 쿨링(RDC) 냉각 솔루션 설치" data-en="RDC Cooling Solution Installation">리어 도어 쿨링(RDC) 냉각 솔루션 설치</span>
+                    </h3>
+                    <div class="work-photos">
+                        <figure class="work-photo" data-full="photos/4_1.jpg" role="button" tabindex="0" aria-label="리어 도어 쿨링(RDC) 냉각 솔루션 설치 1 확대 보기">
+                            <img src="photos/4_1.jpg" alt="리어 도어 쿨링(RDC) 냉각 솔루션 설치 1" loading="lazy">
+                        </figure>
+                        <figure class="work-photo" data-full="photos/4_2.jpg" role="button" tabindex="0" aria-label="리어 도어 쿨링(RDC) 냉각 솔루션 설치 2 확대 보기">
+                            <img src="photos/4_2.jpg" alt="리어 도어 쿨링(RDC) 냉각 솔루션 설치 2" loading="lazy">
+                        </figure>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -1060,6 +1311,13 @@
         </div>
     </footer>
 
+    <div class="photo-modal" id="photoModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="공사 실적 사진 보기">
+        <div class="photo-modal__dialog">
+            <button type="button" class="photo-modal__close" id="photoModalClose" aria-label="닫기">&times;</button>
+            <img class="photo-modal__img" id="photoModalImg" src="" alt="">
+        </div>
+    </div>
+
     <!-- Interactive Script for Toggle -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1088,6 +1346,55 @@
                             el.innerHTML = koText;
                         }
                     });
+                }
+            });
+
+            const photoModal = document.getElementById('photoModal');
+            const photoModalImg = document.getElementById('photoModalImg');
+            const photoModalClose = document.getElementById('photoModalClose');
+            const workPhotos = document.querySelectorAll('.work-photo');
+
+            function openPhotoModal(src, alt) {
+                photoModalImg.src = src;
+                photoModalImg.alt = alt || '';
+                photoModal.classList.add('is-open');
+                photoModal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+                photoModalClose.focus();
+            }
+
+            function closePhotoModal() {
+                photoModal.classList.remove('is-open');
+                photoModal.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('modal-open');
+                photoModalImg.src = '';
+                photoModalImg.alt = '';
+            }
+
+            workPhotos.forEach(figure => {
+                const openFromFigure = () => {
+                    const img = figure.querySelector('img');
+                    const src = figure.getAttribute('data-full') || (img && img.src);
+                    const alt = img ? img.alt : '';
+                    if (src) openPhotoModal(src, alt);
+                };
+
+                figure.addEventListener('click', openFromFigure);
+                figure.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openFromFigure();
+                    }
+                });
+            });
+
+            photoModalClose.addEventListener('click', closePhotoModal);
+            photoModal.addEventListener('click', function(e) {
+                if (e.target === photoModal) closePhotoModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && photoModal.classList.contains('is-open')) {
+                    closePhotoModal();
                 }
             });
         });
